@@ -161,13 +161,3 @@ The analyzed network traffic represents a stable HTTP session with high-volume d
 
 **Report Status:** Submitted
 **Prepared by:** SOC Analyst – Blue Team
-
----
-
-### ✅ Analyst Feedback (Optional)
-
-This report meets **SOC documentation standards** and would be suitable for:
-
-* Incident ticket closure documentation
-* Tier 1–2 SOC escalation review
-* Blue Team training portfolio or certification evidence
