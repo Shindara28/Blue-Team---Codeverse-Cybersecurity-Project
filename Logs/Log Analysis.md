@@ -159,5 +159,5 @@ The analyzed network traffic represents a stable HTTP session with high-volume d
 
 ---
 
-**Report Status:** Submitted
-**Prepared by:** SOC Analysts; OMOLEWA OYINDOLAPO AYOMIDE AND TIMOTY VICTOR ONYEDIKACHUKWU – Blue Team
+Report Status: **Submitted**
+Prepared by: SOC Analysts:**OMOLEWA OYINDOLAPO AYOMIDE AND TIMOTY VICTOR ONYEDIKACHUKWU** – Blue Team
