@@ -108,5 +108,8 @@ The incident was successfully detected, analyzed, and contained by the Blue Team
 
 Overall, the Blue Team demonstrated effective monitoring, analysis, and incident response capabilities, meeting the objectives of the simulated defensive exercise.
 
-**Incident Responder**
+---
+
+## **Incident Responder**
+
 Saadu Aminullahi Abdullahi and AYILEKA NAHEEM ABIODUN
