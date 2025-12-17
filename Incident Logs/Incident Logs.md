@@ -107,3 +107,6 @@ To reduce future risk, the following measures are recommended:
 The incident was successfully detected, analyzed, and contained by the Blue Team. No evidence of data loss, system compromise, or service disruption was identified. The activity is classified as **low-to-moderate risk reconnaissance**.
 
 Overall, the Blue Team demonstrated effective monitoring, analysis, and incident response capabilities, meeting the objectives of the simulated defensive exercise.
+
+**Incident Responder**
+Saadu Aminullahi Abdullahi and AYILEKA NAHEEM ABIODUN
