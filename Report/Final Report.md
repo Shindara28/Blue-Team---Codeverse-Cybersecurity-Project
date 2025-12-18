@@ -96,7 +96,7 @@ These indicators were consistent with reconnaissance and information-gathering t
 
 | Date       | Time Range       | Source IP      | Destination      | Protocol | Observed Activity                  |
 |-----------|----------------|----------------|-----------------|----------|-----------------------------------|
-| 11-12-2025 | 12:30 PM – 2:30 PM | 146.75.90.172 | 192.168.0.166   | HTTP/TCP | Repeated HTTP communication       |
+| 11-12-2025 | 12:30 PM – 2:30 PM | 146.75.90.172 | 192.168.69.175   | HTTP/TCP | Repeated HTTP communication       |
 | 11-12-2025 | Various        | 192.168.0.172 | Internal hosts  | TCP      | Anomalous traffic patterns        |
 | 11-12-2025 | Various        | 192.168.0.151 | Internal hosts  | TCP      | Suspicious network behavior       |
 | 11-12-2025 | Various        | 192.168.0.134 | Internal hosts  | TCP      | Retransmissions observed          |
