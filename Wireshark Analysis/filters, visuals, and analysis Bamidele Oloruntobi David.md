@@ -1,9 +1,11 @@
-![Screenschot 1](https://github.com/user-attachments/assets/9a23dd34-7b11-41d8-8570-df727d3c5db5)# Wireshark Capture Summary
+# Wireshark Capture Summary
 
 This document presents an expanded summary of three Wireshark screenshots captured during network traffic analysis. The purpose of these captures is to demonstrate how common web protocols operate at the packet level, how Wireshark reconstructs and interprets traffic, and how to distinguish normal network behavior from potentially suspicious activity. Together, the screenshots provide clear examples of unencrypted HTTP communication, modern encrypted web traffic, and secure redirection mechanisms.
 
 ## Capture 1: Plain HTTP over TCP
-![Screenschot 1](https://github.com/user-attachments/assets/353a683c-028b-4920-859d-b3b57b00e18b)
+![My Picture](https://github.com/user-attachments/assets/b0230af3-404f-4d87-8dc8-7f7f8653830e)
+![Screenschot 1](https://github.com/user-attachments/assets/810d5543-301b-44c7-9bac-12e92041fae0)
+
 
 The first capture illustrates a traditional HTTP session running over TCP port 80 between a local client (192.168.0.166) and a public web server (146.75.90.172). Because the traffic is unencrypted, Wireshark is able to display and reassemble the full HTTP payload. Large responses are divided into multiple TCP segments and later reconstructed into a single readable HTTP object.
 
