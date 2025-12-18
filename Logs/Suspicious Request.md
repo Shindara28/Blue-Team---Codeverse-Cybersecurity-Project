@@ -10,7 +10,7 @@ Multiple HTTP continuation packets were observed originating from an external IP
 
 **Observed Behavior:**
 - Source: `146.75.90.172`
-- Destination: `192.168.0.166` (Port 80)
+- Destination: `192.168.69.175` (Port 80)
 - Repeated HTTP continuation segments
 - Large payload sizes with limited visible request context
 
@@ -29,7 +29,7 @@ Repeated TCP payload reassembly events were identified on the same network flow.
 - Multiple packets marked as `[TCP PDU reassembled in frame 431]`
 
 **Why This Is Suspicious:**
-Frequent TCP reassembly suggests unusually large or fragmented data transfers. This behavior is often associated with automated tools, aggressive crawling, or attempts to transfer large payloads not typical of standard HTTP interactions.
+Frequent TCP reassembly suggests unusually large or fragmented data transfers. This behavior is often associated with automated tools, aggressive crawling.
 
 ---
 
@@ -67,8 +67,8 @@ Retransmissions without successful session establishment can suggest scanning be
 
 | Activity Type                  | Source IP        | Destination IP      | Protocol        |
 |--------------------------------|------------------|---------------------|-----------------|
-| Large HTTP continuations       | 146.75.90.172    | 192.168.0.166       | HTTP / TCP      |
-| Network reconnaissance / scanning     | 146.75.90.172    | 192.168.0.166       | TCP             |
+| Large HTTP continuations       | 146.75.90.172    | 192.168.69.175       | HTTP / TCP      |
+| Network reconnaissance / scanning     | 146.75.90.172    | 192.168.69.175       | TCP             |
 | QUIC traffic with resets       | 34.87.1.8        | 192.168.0.112       | QUIC / TCP RST  |
 | Spurious TCP retransmissions   | 192.168.0.112    | 192.168.223.188     | TCP             |
 
