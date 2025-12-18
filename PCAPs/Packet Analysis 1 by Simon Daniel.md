@@ -1,163 +1,142 @@
-Packets Capture Threat Hunting Report
+# Packet Capture Threat Hunting Report
 
-Assignment Type: Packet Analysis & Threat Hunting
-Student Name: Simon Daniel Mathew
+**Assignment Type:** Packet Analysis & Threat Hunting  
+**Student Name:** Simon Daniel Mathew  
 
-1. Introduction
+---
 
-This report presents an examination of captured network traffic in order to determine whether malicious activity, data exfiltration, or command-and-control (C2) communication is present. The analysis is based on browser-level HTTP inspection and packet-level Wireshark captures provided as screenshots.
+## 1. Introduction
 
-2. Scope & Objectives
+This report examines captured network traffic to determine the presence of malicious activity, data exfiltration, or command-and-control (C2) communications. Analysis is based on browser-level HTTP inspection and packet-level Wireshark captures provided as screenshots.
 
-Objectives
+---
 
-	•	Analyze HTTP and encrypted network traffic
-	•	Identify indicators of compromise (IOCs)
-	•	Assess network behavior using threat-hunting hypotheses
-	•	Produce a defensible conclusion
+## 2. Scope & Objectives
 
-Scope
+**Objectives**
+- Analyze HTTP and encrypted network traffic  
+- Identify indicators of compromise (IOCs)  
+- Assess network behavior using threat-hunting hypotheses  
+- Draw defensible conclusions  
 
-	•	HTTP/2 browser traffic
-	•	TLS 1.3 encrypted sessions
-	•	QUIC (HTTP/3) traffic
-	•	TCP retransmissions and resets
+**Scope**
+- HTTP/2 browser traffic  
+- TLS 1.3 encrypted sessions  
+- QUIC (HTTP/3) traffic  
+- TCP retransmissions and resets  
 
-3. Evidence Overview
+---
 
-Evidence ID	Description	Tool
-E-01	HTTP redirect traffic	Browser Network Inspector
-E-02	Encrypted packet capture	Wireshark
+## 3. Evidence Overview
 
-4. Analysis
+| Evidence ID | Description                | Tool                        |
+|------------|----------------------------|-----------------------------|
+| E-01       | HTTP redirect traffic       | Browser Network Inspector   |
+| E-02       | Encrypted packet capture    | Wireshark                   |
 
-4.1 Evidence E-01 — HTTP Redirect Analysis
+---
 
-Observations
+## 4. Analysis
 
-	•	HTTP/2 GET requests for / and /favicon.ico
-	•	Server response: 301 Moved Permanently
-	•	Redirects client to HTTPS resource
-	•	Presence of security headers:
-	•	Strict-Transport-Security
-	•	X-Frame-Options
-	•	X-Content-Type-Options
-	•	Permissions-Policy
+### 4.1 Evidence E-01 — HTTP Redirect Analysis
 
-Analysis
+**Observations**
+- HTTP/2 GET requests for `/` and `/favicon.ico`  
+- Server responded with `301 Moved Permanently`  
+- Redirected client to HTTPS resource  
+- Security headers present: `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Permissions-Policy`  
 
-A 301 Moved Permanently response indicates an intentional server-side redirect. The inclusion of multiple security headers demonstrates a hardened configuration designed to protect against downgrade attacks, clickjacking, and MIME-type confusion.
+**Analysis**  
+The 301 response indicates an intentional redirect. Security headers demonstrate a hardened server configuration to prevent downgrade attacks, clickjacking, and MIME-type issues.  
 
-Finding
+**Finding**  
+This traffic represents normal, secure web behavior. No evidence of malicious redirection or exploitation was detected.  
 
-	This traffic represents legitimate web behavior with proper security enforcement.
-No indicators of malicious redirection or exploitation were identified.
+---
 
-4.2 Evidence E-02 — Packet-Level Network Analysis
+### 4.2 Evidence E-02 — Packet-Level Network Analysis
 
-Protocols Identified
+**Protocols Observed**
+- TCP  
+- TLS 1.3  
+- QUIC (UDP/443)  
+- HTTP/3  
 
-	•	TCP
-	•	TLSv1.3
-	•	QUIC (UDP/443)
-	•	HTTP/3
+**TLS 1.3 Traffic**  
+Encrypted application data over TCP port 443 was observed. No malformed packets or handshake anomalies were detected.  
+**Assessment:** Normal HTTPS communication.  
 
-TLS 1.3 Traffic
+**QUIC Traffic**  
+QUIC packets labeled as "Protected Payload" indicate encrypted HTTP/3 traffic, consistent with modern browser behavior.  
+**Assessment:** Expected behavior; not indicative of evasion.  
 
-Encrypted application data was observed over TCP port 443. No malformed packets or handshake anomalies were present.
+**TCP Retransmissions**  
+Some retransmitted packets and duplicate acknowledgements were seen.  
+**Interpretation:** Likely caused by transient packet loss or network congestion; not necessarily malicious.  
 
-Assessment: Normal HTTPS communication.
+**TCP Reset (RST)**  
+A limited number of TCP reset packets were observed.  
+**Interpretation:** Likely due to normal session termination, timeouts, or firewall behavior. No pattern suggesting interference was detected.  
 
-QUIC Traffic
+---
 
-QUIC packets labeled as “Protected Payload” indicate encrypted HTTP/3 traffic, commonly used by modern browsers for performance optimization.
+## 5. Threat Hunting Analysis
 
-Assessment: Expected behavior; not evidence of evasion.
+Threat hunting focused on testing hypotheses rather than relying solely on known signatures.  
 
-TCP Retransmissions
+**Hypothesis 1 — Command-and-Control (C2) Activity**  
+- Unusual ports ❌  
+- Beaconing intervals ❌  
+- Repeated outbound callbacks ❌  
+**Result:** Rejected; no C2 behavior detected.  
 
-Several retransmitted packets and duplicate acknowledgements were observed.
+**Hypothesis 2 — Data Exfiltration**  
+- Large outbound transfers ❌  
+- DNS tunneling ❌  
+- Protocol misuse ❌  
+**Result:** Rejected; no exfiltration observed.  
 
-Interpretation:
-Likely caused by transient packet loss or network congestion. This is common in real-world networks and does not inherently indicate malicious activity.
+**Hypothesis 3 — Malware Delivery**  
+- Malicious redirects ❌  
+- Executable downloads ❌  
+- Suspicious MIME types ❌  
+**Result:** Rejected; no malware activity observed.  
 
-TCP Reset (RST)
+**Hypothesis 4 — Network Evasion Techniques**  
+- Encrypted traffic ✔ (expected)  
+- QUIC usage ✔ (expected)  
+- Fragmentation abuse ❌  
+**Result:** Rejected; no evasion techniques detected.  
 
-A limited number of TCP reset packets were observed.
+---
 
-Interpretation:
-Likely caused by normal session termination, timeouts, or firewall behavior. No repeated pattern suggesting interference was identified.
+## 6. Risk Assessment
 
-5. Threat Hunting Analysis
+| Category              | Risk Level |
+|----------------------|------------|
+| Malware Presence      | None       |
+| Data Loss             | None       |
+| Network Instability   | Low        |
+| Policy Violation      | None       |
 
-Threat hunting focuses on testing hypotheses rather than relying solely on known signatures.
+---
 
-Hypothesis 1: Command-and-Control (C2) Activity
+## 7. Limitations
+- Encrypted payloads could not be decrypted  
+- Raw PCAP file was not available  
+- No endpoint telemetry provided  
 
-Evaluated Indicators
+Despite these limitations, the evidence supports a confident conclusion.  
 
-	•	Unusual ports ❌
-	•	Beaconing intervals ❌
-	•	Repeated outbound callbacks ❌
+---
 
-Result:
-🟢 Hypothesis rejected — no C2 behavior detected.
+## 8. Conclusion
 
-Hypothesis 2: Data Exfiltration
+Analysis indicates that the observed traffic reflects **normal, secure web communication using modern protocols**. No indicators of compromise, malicious activity, or policy violations were identified.  
 
-Evaluated Indicators
+---
 
-	•	Large outbound transfers ❌
-	•	DNS tunneling ❌
-	•	Protocol misuse ❌
-
-Result:
-🟢 Hypothesis rejected — no exfiltration indicators observed.
-
-Hypothesis 3: Malware Delivery
-
-Evaluated Indicators
-
-	•	Malicious redirects ❌
-	•	Executable downloads ❌
-	•	Suspicious MIME types ❌
-
-Result:
-🟢 Hypothesis rejected — no malware delivery observed.
-
-Hypothesis 4: Network Evasion Techniques
-
-Evaluated Indicators
-
-	•	Encrypted traffic ✔ (expected)
-	•	QUIC usage ✔ (expected)
-	•	Fragmentation abuse ❌
-
-Result:
-🟢 Hypothesis rejected — no evasion techniques detected.
-
-6. Risk Assessment
-
-Category	Risk Level
-Malware Presence	None
-Data Loss	None
-Network Instability	Low
-Policy Violation	None
-
-7. Limitations
-
-	•	Encrypted payloads could not be decrypted
-	•	No raw PCAP file available
-	•	No endpoint telemetry provided
-
-Despite these limitations, the evidence supports a confident conclusion.
-
-8. Conclusion
-
-Based on examination and threat-hunting analysis, the observed traffic represents normal, secure web communication using modern protocols. No indicators of compromise, malicious activity, or policy violations were identified.
-
-9. References
-
-	•	Wireshark User Guide
-	•	NIST SP 800-61 (Incident Handling)
-	•	MITRE ATT&CK Framework
+## 9. References
+- Wireshark User Guide  
+- NIST SP 800-61 (Computer Security Incident Handling Guide)  
+- MITRE ATT&CK Framework  
