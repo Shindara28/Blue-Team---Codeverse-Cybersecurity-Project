@@ -3,7 +3,6 @@
 This document presents an expanded summary of three Wireshark screenshots captured during network traffic analysis. The purpose of these captures is to demonstrate how common web protocols operate at the packet level, how Wireshark reconstructs and interprets traffic, and how to distinguish normal network behavior from potentially suspicious activity. Together, the screenshots provide clear examples of unencrypted HTTP communication, modern encrypted web traffic, and secure redirection mechanisms.
 
 ## Capture 1: Plain HTTP over TCP
-![My Picture](https://github.com/user-attachments/assets/b0230af3-404f-4d87-8dc8-7f7f8653830e)
 ![Screenschot 1](https://github.com/user-attachments/assets/810d5543-301b-44c7-9bac-12e92041fae0)
 
 
@@ -42,5 +41,5 @@ In addition, the screenshots demonstrate HTTP redirection behavior through HTTP/
 
 ---
 
-Bamidele Oloruntobi David
+_**Bamidele Oloruntobi David**_
 
