@@ -28,7 +28,7 @@ No indicators of compromise (IOC), exploitation attempts, or data exfiltration w
 | ------------- | ------------------------------------------- |
 | Protocol      | HTTP over TCP                               |
 | Encryption    | None (plaintext HTTP)                       |
-| Internal Host | 192.168.0.166                               |
+| Internal Host | 192.168.69.175                               |
 | External Host | 146.75.90.172                               |
 | Server Port   | 80                                          |
 | Client Ports  | 60203, 60194                                |
@@ -86,8 +86,8 @@ The server actively transmitted large data segments, while the client primarily 
 
 | Traffic Direction             | Interpretation                       |
 | ----------------------------- | ------------------------------------ |
-| 146.75.90.172 → 192.168.0.166 | Server delivering HTTP response data |
-| 192.168.0.166 → 146.75.90.172 | Client acknowledgments               |
+| 146.75.90.172 → 192.168.69.175 | Server delivering HTTP response data |
+| 192.168.69.175 → 146.75.90.172 | Client acknowledgments               |
 
 This traffic pattern is consistent with web content delivery, such as HTML pages or static assets.
 
