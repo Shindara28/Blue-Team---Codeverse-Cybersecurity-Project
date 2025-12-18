@@ -21,19 +21,20 @@ Based on the observed traffic characteristics and behaviors, the activity was as
 ## 2. Monitoring Setup
 
 **Detection and Analysis**
-The incident was detected and analyzed using the following tools and configurations
-**Tool Used:** Wireshark and Burpsuite
-**Monitoring Method:**
+- The incident was detected and analyzed using the following tools and configurations
+_ **Tool Used:** Wireshark and Burpsuite
+ 
+- **Monitoring Method:**
      - Live packet capture
      - Offline PCAP (Packet Capture) analysis
      - **PCAP File:** wire.pcapng
-##**Protocols Monitored**
- - HTTP
- - TCP
- - TLS (Transport Layer Security)
- - QUIC (Quick UDP Internet Connections)
- - SSDP (Simple Service Discovery Protocol)
-Traffic was analyzed for anomalies, including repeated requests, abnormal packet behaviors, and unexpected service discovery activity.
+- **Protocols Monitored**
+  - HTTP
+  - TCP
+  - TLS (Transport Layer Security)
+  - QUIC (Quick UDP Internet Connections)
+  - SSDP (Simple Service Discovery Protocol)
+- Traffic was analyzed for anomalies, including repeated requests, abnormal packet behaviors, and unexpected service discovery activity.
 
 ## 3. Attack Detection Log
 
