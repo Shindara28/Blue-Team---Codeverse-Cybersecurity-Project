@@ -1,6 +1,6 @@
 ## Observed Internal IP Addresses
 
-During traffic analysis, the following internal IP addresses were observed generating or participating in anomalous network activity. These hosts were reviewed as part of the investigation to identify unusual TCP behavior and discovery traffic.
+During traffic analysis, the following internal hosts were observed generating anomalous network activity. They have been labeled as Suspicious Host 1–5 for tracking and further investigation.
 
 | IP Address       | Role / Observation Summary                         |
 |------------------|----------------------------------------------------|
@@ -11,4 +11,4 @@ During traffic analysis, the following internal IP addresses were observed gener
 | 192.168.0.185    | SSDP M-SEARCH discovery traffic detected           |
 
 ### Assessment
-The listed IP addresses are internal hosts that exhibited abnormal or noteworthy behavior during packet inspection. While no confirmed compromise was identified, the observed activity suggests misconfigurations, background service noise, or indirect involvement in reconnaissance-related traffic. Continued monitoring and host-level review are recommended.
+The listed IP addresses are internal hosts that exhibited abnormal or notable behavior during packet inspection. While no confirmed compromise was identified, the observed activity may indicate misconfigurations, background service activity, or indirect participation in reconnaissance-related traffic. Continued monitoring and detailed host-level review are recommended.
